@@ -1,9 +1,0 @@
-buildscript{
-扩展。Kotlin_version='1.9.22'
-存储库{google()；MavenCentral()}
-相依性{
-类路径'com.android.tools.build:gradle:8.2.2'
-类路径"org.jetbrains.kotlin:kotlin-gradle-plugin：$Kotlin_version"
-    }
-}
-AllProjects{存储库{google()；MavenCentral()}}
